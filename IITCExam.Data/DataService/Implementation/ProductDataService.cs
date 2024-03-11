@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using static System.Net.Mime.MediaTypeNames;
+using System.Xml.Linq;
 
 namespace IITCExam.Data.DataService.Implementation
 {
@@ -25,6 +26,20 @@ namespace IITCExam.Data.DataService.Implementation
         }
 
         //in here the data will be chopped into batches of 1000 and will be sent to the backend stored procedure
+
+
+        //Run this query in the table before excecuting the stored procedure cause this table type is needed when storing data to the table
+
+        //CREATE TYPE ProductType AS TABLE
+        //(
+        //        Name NVARCHAR(100),
+        //        Description NVARCHAR(255),
+        //        Quantity INT,
+        //        Amount DECIMAL(18, 2),
+        //        InStock INT
+        //    );
+
+
         public async Task<bool> AddDataFromCsv(List<string[]> dataList)
         {
             try
